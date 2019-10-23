@@ -53,17 +53,17 @@ class App extends Component {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   handleClickToPodcastPage(podcast) {
     axios.get('/api/podcast/info', {
       params: {
-        url: podcast.feedUrl
-      }
+        url: podcast.feedUrl,
+      },
     })
       .then((res) => {
-        this.setState({ metaData: res.data });
+        this.setState({ metaData: res.data.rss.channel[0] });
       })
       .catch((err) => {
         console.log(err);
@@ -78,8 +78,8 @@ class App extends Component {
   handleReturnToSearchResults() {
     this.setState({
       showPodcastPage: false,
-      metaData: {}
-    })
+      metaData: {},
+    });
   }
 
   render() {

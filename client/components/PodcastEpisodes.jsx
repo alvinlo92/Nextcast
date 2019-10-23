@@ -24,7 +24,7 @@ class PodcastEpisodes extends Component {
       <div>
         <div>Title</div>
         <div>{episode.title}</div>
-        <div>{episode.content}</div>
+        <div>{episode.description[0]}</div>
         {this.state.showPlayer ? <button onClick={this.handleShowPlayer}>Stop Playing</button> : <button onClick={this.handleShowPlayer}>Play Episode</button>}
         {this.state.showPlayer && <div>
           <video controls>
@@ -33,7 +33,7 @@ class PodcastEpisodes extends Component {
         </div>}
         <br/>
       </div>
-    )
+    );
   }
 }
 

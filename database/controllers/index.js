@@ -1,9 +1,7 @@
 const axios = require('axios');
-const Parser = require('rss-parser');
+const { parseString } = require('xml2js');
 
 const Podcast = require('../models/index.js');
-
-const parser = new Parser();
 
 exports.getSearchPodcast = (req, res) => {
   const { searchTerm } = req.params;
@@ -20,11 +18,16 @@ exports.getSearchPodcast = (req, res) => {
 exports.getPodcastMetaData = (req, res) => {
   const { url } = req.query;
 
-  (async () => {
-    const feed = await parser.parseURL(url);
-    res.send(feed);
-  })();
-}
+  axios.get(url)
+    .then((request) => {
+      parseString(request.data, (err, result) => {
+        res.send(result);
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 // find for gettting data
 
