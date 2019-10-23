@@ -18,27 +18,29 @@ class SearchBar extends Component {
   handleSubmit(event) {
     event.preventDefault();
     let { searchTerm } = this.state;
+    const { handleSearch } = this.props;
     if (searchTerm !== '') {
       searchTerm = searchTerm.toLowerCase().split(' ').join('+');
-      this.props.handleSearch(searchTerm);
+      handleSearch(searchTerm);
     }
   }
 
   render() {
+    const { searchTerm } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <input
-          type='submit'
-          value='🔍'
+          type="submit"
+          value="🔍"
         />
         <input
-          type='text'
-          placeholder='Search'
-          value={this.state.searchTerm}
+          type="text"
+          placeholder="Search"
+          value={searchTerm}
           onChange={this.handleChange}
         />
       </form>
-    )
+    );
   }
 }
 

@@ -22,20 +22,19 @@ class SearchResults extends Component {
   }
 
   handleClick() {
-    this.props.handleClickToPodcastPage(this.props.podcast);
+    const { handleClickToPodcastPage, podcast } = this.props;
+    handleClickToPodcastPage(podcast);
   }
 
   render() {
-    let { podcast } = this.props;
+    const { podcast } = this.props;
     return (
       <PodcastContainer>
-        <PodcastArtwork src={podcast.artworkUrl600} onClick={() => this.handleClick()}/>
-
-        {podcast.collectionName.length > 25 ? <div>{podcast.collectionName.slice(0, 22) + '...'}</div> : <div>{podcast.collectionName}</div>}
-
-        {podcast.artistName.length > 25 ? <div>{podcast.artistName.slice(0, 22) + '...'}</div> : <div>{podcast.artistName}</div>}
+        <PodcastArtwork src={podcast.artworkUrl600} onClick={() => this.handleClick()} />
+        {podcast.collectionName.length > 25 ? <div>{`${podcast.collectionName.slice(0, 22)}...`}</div> : <div>{podcast.collectionName}</div>}
+        {podcast.artistName.length > 25 ? <div>{`${podcast.artistName.slice(0, 22)}...`}</div> : <div>{podcast.artistName}</div>}
       </PodcastContainer>
-    )
+    );
   }
 }
 

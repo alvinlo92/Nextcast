@@ -11,7 +11,8 @@ class PodcastEpisodes extends Component {
   }
 
   handleShowPlayer() {
-    if (this.state.showPlayer) {
+    const { showPlayer } = this.state;
+    if (showPlayer) {
       this.setState({ showPlayer: false });
     } else {
       this.setState({ showPlayer: true });
@@ -19,19 +20,22 @@ class PodcastEpisodes extends Component {
   }
 
   render() {
+    const { showPlayer } = this.state;
     const { episode } = this.props;
     return (
       <div>
         <div>Title</div>
         <div>{episode.title}</div>
         <div>{episode.description[0]}</div>
-        {this.state.showPlayer ? <button onClick={this.handleShowPlayer}>Stop Playing</button> : <button onClick={this.handleShowPlayer}>Play Episode</button>}
-        {this.state.showPlayer && <div>
-          <video controls>
-            <source src={episode.enclosure.url}></source>
-          </video>
-        </div>}
-        <br/>
+        {showPlayer ? <button type="button" onClick={this.handleShowPlayer}>Stop Playing</button> : <button type="button" onClick={this.handleShowPlayer}>Play Episode</button>}
+        {showPlayer && (
+          <div>
+            <video controls>
+              <source src={episode.enclosure.url} />
+            </video>
+          </div>
+        )}
+        <br />
       </div>
     );
   }

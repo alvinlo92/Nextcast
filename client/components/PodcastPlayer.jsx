@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
 class PodcastPlayer extends Component {
   constructor(props) {
@@ -10,11 +9,11 @@ class PodcastPlayer extends Component {
   render() {
     return (
       <div>
-        <button >Back</button>
-        <button >Play</button>
-        <button >Forward</button>
+        <button type="button">Back</button>
+        <button type="button">Play</button>
+        <button type="button">Forward</button>
       </div>
-    )
+    );
   }
 }
 
