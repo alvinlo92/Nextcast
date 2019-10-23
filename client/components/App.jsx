@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
 
-import SearchBar from './SearchBar.jsx';
-import SearchResults from './SearchResults.jsx';
-import PodcastHomePage from './PodcastHomePage.jsx';
+import SearchBar from './SearchBar';
+import SearchResults from './SearchResults';
+import PodcastHomePage from './PodcastHomePage';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -83,6 +83,9 @@ class App extends Component {
   }
 
   render() {
+    const {
+      showPodcastPage, searchResults, metaData, podcastPage,
+    } = this.state;
     return (
       <div>
         <GlobalStyle />
@@ -90,12 +93,30 @@ class App extends Component {
           <h1>NextCast</h1>
           <SearchBar handleSearch={this.handleSearch} />
         </HeaderContainer>
-        {!this.state.showPodcastPage && <SearchResultsContainer>
-          {this.state.searchResults.length !== 0 && this.state.searchResults.map((podcast, i) => <SearchResults key={i} podcast={podcast} handleClickToPodcastPage={this.handleClickToPodcastPage} />)}
-        </SearchResultsContainer>}
-        {this.state.showPodcastPage && Object.entries(this.state.metaData).length !== 0 && <PodcastHomePage podcast={this.state.podcastPage} metaData={this.state.metaData} handleReturnToSearchResults={this.handleReturnToSearchResults}/>}
+        {!showPodcastPage && (
+          <SearchResultsContainer>
+            {searchResults.length !== 0 && (
+              searchResults.map((podcast, i) => (
+                <SearchResults
+                  key={i}
+                  podcast={podcast}
+                  handleClickToPodcastPage={this.handleClickToPodcastPage}
+                />
+              ))
+            )}
+          </SearchResultsContainer>
+        )}
+        {showPodcastPage && (
+          Object.entries(metaData).length !== 0 && (
+            <PodcastHomePage
+              podcast={podcastPage}
+              metaData={metaData}
+              handleReturnToSearchResults={this.handleReturnToSearchResults}
+            />
+          )
+        )}
       </div>
-    )
+    );
   }
 }
 

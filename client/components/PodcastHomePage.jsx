@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import PodcastEpisodes from './PodcastEpisodes.jsx';
+import PodcastEpisodes from './PodcastEpisodes';
 
 const PodcastHomePageContainer = styled.div`
   display: flex;
@@ -31,11 +31,13 @@ class PodcastHomePage extends Component {
   }
 
   handleBackButton() {
-   this.props.handleReturnToSearchResults();
+    const { handleReturnToSearchResults } = this.props;
+    handleReturnToSearchResults();
   }
 
   handleSubscribeButton() {
-    if (this.state.subscribe) {
+    const { subscribe } = this.state;
+    if (subscribe) {
       this.setState({ subscribe: false });
     } else {
       this.setState({ subscribe: true });
@@ -43,16 +45,17 @@ class PodcastHomePage extends Component {
   }
 
   render() {
-    let { podcast, metaData } = this.props;
+    const { subscribe } = this.state;
+    const { podcast, metaData } = this.props;
     return (
       <PodcastHomePageContainer>
         <div>
-          <button onClick={this.handleBackButton}>Back</button>
+          <button type="button" onClick={this.handleBackButton}>Back</button>
         </div>
         <PodcastArtworkContainer>
           <PodcastPageArtwork src={podcast.artworkUrl600} />
-          {!this.state.subscribe && <button onClick={this.handleSubscribeButton}>Subscribe</button>}
-          {this.state.subscribe && <button onClick={this.handleSubscribeButton}>Subscribed</button>}
+          {!subscribe && <button type="button" onClick={this.handleSubscribeButton}>Subscribe</button>}
+          {subscribe && <button type="button" onClick={this.handleSubscribeButton}>Subscribed</button>}
         </PodcastArtworkContainer>
         <div>
           <div>{podcast.collectionName}</div>
@@ -65,7 +68,7 @@ class PodcastHomePage extends Component {
           {metaData.item.map((episode, i) => <PodcastEpisodes key={i} episode={episode} />)}
         </div>
       </PodcastHomePageContainer>
-    )
+    );
   }
 }
 

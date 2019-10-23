@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const compression = require('compression');
 
-const db = require('../database/index.js');
 const controllers = require('../database/controllers/index.js');
 
 const app = express();
