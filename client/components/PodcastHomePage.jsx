@@ -59,10 +59,10 @@ class PodcastHomePage extends Component {
           <div>{podcast.artistName}</div>
           <br />
           Description
-          <div>{metaData.description}</div>
+          <div>{metaData.description[0]}</div>
         </div>
         <div>
-          {metaData.items.map((episode, i) => <PodcastEpisodes key={i} episode={episode} />)}
+          {metaData.item.map((episode, i) => <PodcastEpisodes key={i} episode={episode} />)}
         </div>
       </PodcastHomePageContainer>
     )
