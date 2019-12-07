@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
 
-import SearchBar from './SearchBar';
-import SearchResults from './SearchResults';
-import PodcastHomePage from './PodcastHomePage';
+import Search from './Search';
+import SearchList from './SearchList';
+import Podcast from './Podcast';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -91,13 +91,13 @@ class App extends Component {
         <GlobalStyle />
         <HeaderContainer>
           <h1>NextCast</h1>
-          <SearchBar handleSearch={this.handleSearch} />
+          <Search handleSearch={this.handleSearch} />
         </HeaderContainer>
         {!showPodcastPage && (
           <SearchResultsContainer>
             {searchResults.length !== 0 && (
               searchResults.map((podcast, i) => (
-                <SearchResults
+                <SearchList
                   key={i}
                   podcast={podcast}
                   handleClickToPodcastPage={this.handleClickToPodcastPage}
@@ -108,7 +108,7 @@ class App extends Component {
         )}
         {showPodcastPage && (
           Object.entries(metaData).length !== 0 && (
-            <PodcastHomePage
+            <Podcast
               podcast={podcastPage}
               metaData={metaData}
               handleReturnToSearchResults={this.handleReturnToSearchResults}

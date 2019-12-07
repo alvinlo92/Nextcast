@@ -13,7 +13,7 @@ const PodcastArtwork = styled.img`
   width: 100%;
 `;
 
-class SearchResults extends Component {
+class SearchList extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -38,4 +38,4 @@ class SearchResults extends Component {
   }
 }
 
-export default SearchResults;
+export default SearchList;

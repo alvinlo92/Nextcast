@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import PodcastEpisodes from './PodcastEpisodes';
+import PodcastList from './PodcastList';
 
 const PodcastHomePageContainer = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ const PodcastPageArtwork = styled.img`
   width: 300px;
 `;
 
-class PodcastHomePage extends Component {
+class Podcast extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,11 +65,11 @@ class PodcastHomePage extends Component {
           <div>{metaData.description[0]}</div>
         </div>
         <div>
-          {metaData.item.map((episode, i) => <PodcastEpisodes key={i} episode={episode} />)}
+          {metaData.item.map((episode, i) => <PodcastList key={i} episode={episode} />)}
         </div>
       </PodcastHomePageContainer>
     );
   }
 }
 
-export default PodcastHomePage;
+export default Podcast;
