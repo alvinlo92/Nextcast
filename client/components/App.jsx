@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
 
-import Search from './Search';
-import SearchList from './SearchList';
 import Podcast from './Podcast';
+
+import SearchContainer from '../containers/SearchContainer';
+import SearchListContainer from '../containers/SearchListContainer';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -16,44 +17,23 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const HeaderContainer = styled.div`
+const SearchStyled = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
-
-const SearchResultsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 `;
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [],
-      podcastPage: {},
-      showPodcastPage: false,
-      metaData: {},
+      // podcastPage: {},
+      // showPodcastPage: false,
+      // metaData: {},
     };
 
-    this.handleSearch = this.handleSearch.bind(this);
     this.handleClickToPodcastPage = this.handleClickToPodcastPage.bind(this);
     this.handleReturnToSearchResults = this.handleReturnToSearchResults.bind(this);
-  }
-
-  handleSearch(searchTerm) {
-    axios.get(`/api/search/${searchTerm}`)
-      .then((res) => {
-        this.setState({
-          searchResults: res.data,
-          showPodcastPage: false,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   handleClickToPodcastPage(podcast) {
@@ -84,29 +64,17 @@ class App extends Component {
 
   render() {
     const {
-      showPodcastPage, searchResults, metaData, podcastPage,
+      showPodcastPage, metaData, podcastPage,
     } = this.state;
     return (
       <div>
         <GlobalStyle />
-        <HeaderContainer>
+        <SearchStyled>
           <h1>NextCast</h1>
-          <Search handleSearch={this.handleSearch} />
-        </HeaderContainer>
-        {!showPodcastPage && (
-          <SearchResultsContainer>
-            {searchResults.length !== 0 && (
-              searchResults.map((podcast, i) => (
-                <SearchList
-                  key={i}
-                  podcast={podcast}
-                  handleClickToPodcastPage={this.handleClickToPodcastPage}
-                />
-              ))
-            )}
-          </SearchResultsContainer>
-        )}
-        {showPodcastPage && (
+          <SearchContainer />
+        </SearchStyled>
+        <SearchListContainer />
+        {/* {showPodcastPage && (
           Object.entries(metaData).length !== 0 && (
             <Podcast
               podcast={podcastPage}
@@ -114,7 +82,7 @@ class App extends Component {
               handleReturnToSearchResults={this.handleReturnToSearchResults}
             />
           )
-        )}
+        )} */}
       </div>
     );
   }
