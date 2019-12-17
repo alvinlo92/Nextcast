@@ -19,6 +19,12 @@ module.exports = {
   },
   plugins: [
     'react',
+    'react-redux'
+  ],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-redux/recommended"
   ],
   rules: {
   },

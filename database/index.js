@@ -4,12 +4,8 @@ mongoose.connect('mongodb://localhost/podcast', { useNewUrlParser: true });
 
 const db = mongoose.connection;
 
-db.on('error', () => {
-  console.log('mongoose connection error');
-});
+db.on('error', () => console.log('mongoose connection error'));
 
-db.once('open', () => {
-  console.log('mongoose connected successfully');
-});
+db.once('open', () => console.log('mongoose connected successfully'));
 
 module.exports = db;
