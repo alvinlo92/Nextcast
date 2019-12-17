@@ -5,6 +5,10 @@ import rootReducer from '../reducers';
 const initialState = {
   page: 'home',
   searchList: [],
+  podcast: {
+    podcast: {},
+    feed: {},
+  },
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

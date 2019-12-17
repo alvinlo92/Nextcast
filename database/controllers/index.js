@@ -15,7 +15,7 @@ exports.getSearchPodcast = (req, res) => {
     });
 };
 
-exports.getPodcastMetaData = (req, res) => {
+exports.getPodcastFeed = (req, res) => {
   const { url } = req.query;
 
   axios.get(url)
@@ -28,7 +28,3 @@ exports.getPodcastMetaData = (req, res) => {
       console.log(error);
     });
 };
-
-// find for gettting data
-
-// new and save to post data

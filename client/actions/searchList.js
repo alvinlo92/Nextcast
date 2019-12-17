@@ -1,5 +1,5 @@
 const changeSearchList = (podcasts) => ({
-  type: 'CHANGE_PODCAST_LIST',
+  type: 'CHANGE_SEARCH_LIST',
   podcasts,
 });
 

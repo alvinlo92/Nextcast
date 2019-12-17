@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const SearchListItemStyled = styled.div`
@@ -13,12 +13,12 @@ const SearchListItemArtwork = styled.img`
   width: 100%;
 `;
 
-const SearchListItem = ({ podcast, handleSearchListItemClick }) => {
+const SearchListItem = ({ podcast, handleSearchListItemClick }) => (
   <SearchListItemStyled>
-    {/* <SearchListItemArtwork src={podcast.artworkUrl600} onClick={() => this.handleClick()} />
+    <SearchListItemArtwork src={podcast.artworkUrl600} onClick={() => handleSearchListItemClick(podcast)} />
     {podcast.collectionName.length > 25 ? <div>{`${podcast.collectionName.slice(0, 22)}...`}</div> : <div>{podcast.collectionName}</div>}
-    {podcast.artistName.length > 25 ? <div>{`${podcast.artistName.slice(0, 22)}...`}</div> : <div>{podcast.artistName}</div>} */}
+    {podcast.artistName.length > 25 ? <div>{`${podcast.artistName.slice(0, 22)}...`}</div> : <div>{podcast.artistName}</div>}
   </SearchListItemStyled>
-};
+);
 
 export default SearchListItem;

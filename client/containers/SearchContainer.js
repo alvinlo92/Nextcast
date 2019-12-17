@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import Search from '../components/Search';
-import handleSearchChange from '../actions/search';
+import getSearchList from '../actions/search';
 
 const mapDispatchToProps = (dispatch) => ({
   handleSearchInputChange: (search) => {
-    const endpoint = search.toLowerCase().split(' ').join('+');
-    dispatch(handleSearchChange(endpoint));
+    const url = search.toLowerCase().split(' ').join('+');
+    dispatch(getSearchList(url));
   },
 });
 

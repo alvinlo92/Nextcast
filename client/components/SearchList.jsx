@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import SearchListItem from './SearchListItem';
 
 const SearchListStyled = styled.div`
@@ -12,14 +11,14 @@ const SearchListStyled = styled.div`
 const SearchList = ({ podcasts, handleSearchListItemClick }) => (
   <SearchListStyled>
     {
-      podcasts
-      && podcasts.map((podcast) => {
+      podcasts.length > 0
+      && podcasts.map((podcast) => (
         <SearchListItem
           key={podcast.collectionId}
           podcast={podcast}
           handleSearchListItemClick={handleSearchListItemClick}
         />
-      })
+      ))
     }
   </SearchListStyled>
 );
