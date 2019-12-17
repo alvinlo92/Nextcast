@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import axios from 'axios';
-
-import Search from './Search';
-import SearchList from './SearchList';
-import Podcast from './Podcast';
+import SearchContainer from '../containers/SearchContainer';
+import SearchListContainer from '../containers/SearchListContainer';
+import PodcastContainer from '../containers/PodcastContainer';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -16,108 +14,22 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const HeaderContainer = styled.div`
+const SearchStyled = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
 
-const SearchResultsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchResults: [],
-      podcastPage: {},
-      showPodcastPage: false,
-      metaData: {},
-    };
-
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleClickToPodcastPage = this.handleClickToPodcastPage.bind(this);
-    this.handleReturnToSearchResults = this.handleReturnToSearchResults.bind(this);
-  }
-
-  handleSearch(searchTerm) {
-    axios.get(`/api/search/${searchTerm}`)
-      .then((res) => {
-        this.setState({
-          searchResults: res.data,
-          showPodcastPage: false,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  handleClickToPodcastPage(podcast) {
-    axios.get('/api/podcast/info', {
-      params: {
-        url: podcast.feedUrl,
-      },
-    })
-      .then((res) => {
-        this.setState({ metaData: res.data.rss.channel[0] });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    this.setState({
-      podcastPage: podcast,
-      showPodcastPage: true,
-    });
-  }
-
-  handleReturnToSearchResults() {
-    this.setState({
-      showPodcastPage: false,
-      metaData: {},
-    });
-  }
-
-  render() {
-    const {
-      showPodcastPage, searchResults, metaData, podcastPage,
-    } = this.state;
-    return (
-      <div>
-        <GlobalStyle />
-        <HeaderContainer>
-          <h1>NextCast</h1>
-          <Search handleSearch={this.handleSearch} />
-        </HeaderContainer>
-        {!showPodcastPage && (
-          <SearchResultsContainer>
-            {searchResults.length !== 0 && (
-              searchResults.map((podcast, i) => (
-                <SearchList
-                  key={i}
-                  podcast={podcast}
-                  handleClickToPodcastPage={this.handleClickToPodcastPage}
-                />
-              ))
-            )}
-          </SearchResultsContainer>
-        )}
-        {showPodcastPage && (
-          Object.entries(metaData).length !== 0 && (
-            <Podcast
-              podcast={podcastPage}
-              metaData={metaData}
-              handleReturnToSearchResults={this.handleReturnToSearchResults}
-            />
-          )
-        )}
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <GlobalStyle />
+    <h1>NextCast</h1>
+    <SearchStyled>
+      <SearchContainer />
+    </SearchStyled>
+    <SearchListContainer />
+    <PodcastContainer />
+  </div>
+);
 
 export default App;

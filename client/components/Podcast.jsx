@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-
 import PodcastList from './PodcastList';
 
-const PodcastHomePageContainer = styled.div`
+const PodcastStyled = styled.div`
   display: flex;
 `;
 
@@ -19,57 +18,24 @@ const PodcastPageArtwork = styled.img`
   width: 300px;
 `;
 
-class Podcast extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      subscribe: false,
-    };
-
-    this.handleBackButton = this.handleBackButton.bind(this);
-    this.handleSubscribeButton = this.handleSubscribeButton.bind(this);
-  }
-
-  handleBackButton() {
-    const { handleReturnToSearchResults } = this.props;
-    handleReturnToSearchResults();
-  }
-
-  handleSubscribeButton() {
-    const { subscribe } = this.state;
-    if (subscribe) {
-      this.setState({ subscribe: false });
-    } else {
-      this.setState({ subscribe: true });
-    }
-  }
-
-  render() {
-    const { subscribe } = this.state;
-    const { podcast, metaData } = this.props;
-    return (
-      <PodcastHomePageContainer>
-        <div>
-          <button type="button" onClick={this.handleBackButton}>Back</button>
-        </div>
-        <PodcastArtworkContainer>
-          <PodcastPageArtwork src={podcast.artworkUrl600} />
-          {!subscribe && <button type="button" onClick={this.handleSubscribeButton}>Subscribe</button>}
-          {subscribe && <button type="button" onClick={this.handleSubscribeButton}>Subscribed</button>}
-        </PodcastArtworkContainer>
-        <div>
-          <div>{podcast.collectionName}</div>
-          <div>{podcast.artistName}</div>
-          <br />
-          Description
-          <div>{metaData.description[0]}</div>
-        </div>
-        <div>
-          {metaData.item.map((episode, i) => <PodcastList key={i} episode={episode} />)}
-        </div>
-      </PodcastHomePageContainer>
-    );
-  }
-}
+const Podcast = ({ podcast, feed }) => (
+  Object.keys(feed).length > 0 && (
+  <PodcastStyled>
+   <PodcastArtworkContainer>
+      <PodcastPageArtwork src={podcast.artworkUrl600} />
+    </PodcastArtworkContainer>
+    <div>
+      <div>{podcast.collectionName}</div>
+      <div>{podcast.artistName}</div>
+      <br />
+      Description
+      <div>{feed.description[0]}</div>
+    </div>
+    <div>
+      {feed.item.map((episode, i) => <PodcastList key={i} episode={episode} />)}
+    </div>
+  </PodcastStyled>
+  )
+);
 
 export default Podcast;

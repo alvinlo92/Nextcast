@@ -13,6 +13,6 @@ app.use(express.static('public'));
 
 app.get('/api/search/:searchTerm', controllers.getSearchPodcast);
 
-app.get('/api/podcast/info', controllers.getPodcastMetaData);
+app.get('/api/podcast/feed', controllers.getPodcastFeed);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
