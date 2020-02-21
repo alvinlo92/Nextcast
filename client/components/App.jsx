@@ -1,8 +1,9 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import NavBarContainer from '../containers/NavBarContainer';
 import SearchContainer from '../containers/SearchContainer';
 import SearchListContainer from '../containers/SearchListContainer';
+import TopChartsContainer from '../containers/TopChartsContainer';
 import PodcastContainer from '../containers/PodcastContainer';
 
 const GlobalStyle = createGlobalStyle`
@@ -21,6 +22,7 @@ const App = () => (
     <NavBarContainer />
     <SearchContainer />
     <SearchListContainer />
+    <TopChartsContainer />
     <PodcastContainer />
   </div>
 );

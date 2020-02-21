@@ -7,9 +7,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handlePageClick: (page) => {
-    dispatch(changePage(page));
-  },
+  handlePageClick: (page) => dispatch(changePage(page)),
 });
 
 const NavBarContainer = connect(mapStateToProps, mapDispatchToProps)(NavBar);
