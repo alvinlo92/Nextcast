@@ -5,6 +5,7 @@ import rootReducer from '../reducers';
 const initialState = {
   page: 'home',
   searchList: [],
+  topCharts: [],
   podcast: {
     podcast: {},
     feed: {},

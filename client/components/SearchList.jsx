@@ -14,18 +14,14 @@ const SearchListCSS = styled.div`
 
 const SearchList = ({ page, podcasts, handleSearchListItemClick }) => (
   <SearchListCSS>
-    {
-      podcasts.length > 0
-      && page === 'search'
-      && podcasts.map((podcast) => (
-        <SearchListItem
-          key={podcast.collectionId}
-          podcast={podcast}
-          handleSearchListItemClick={handleSearchListItemClick}
-          page={podcast.collectionName}
-        />
-      ))
-    }
+    {podcasts.length > 0 && page === 'search' && podcasts.map((podcast) => (
+      <SearchListItem
+        key={podcast.collectionId}
+        podcast={podcast}
+        handleSearchListItemClick={handleSearchListItemClick}
+        page={podcast.collectionName}
+      />
+    ))}
   </SearchListCSS>
 );
 

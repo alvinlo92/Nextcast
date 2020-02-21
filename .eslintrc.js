@@ -5,6 +5,9 @@ module.exports = {
   },
   extends: [
     'airbnb',
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-redux/recommended"
   ],
   globals: {
     Atomics: 'readonly',
@@ -20,11 +23,6 @@ module.exports = {
   plugins: [
     'react',
     'react-redux'
-  ],
-  extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-redux/recommended"
   ],
   rules: {
   },

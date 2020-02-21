@@ -15,9 +15,10 @@ const NavBar = ({ page, handlePageClick }) => {
   return (
     <NavBarCSS>
       <h1 className={'home'} onClick={(e) => handlePageClick(e.target.className)}>NextCast</h1>
-      <h2 className={'home'} onClick={(e) => handlePageClick(e.target.className)}>Home</h2>
-      <h2 className={'search'} onClick={(e) => handlePageClick(e.target.className)}>Search</h2>
-      <h2 className={'library'} onClick={(e) => handlePageClick(e.target.className)}>Library</h2>
+      <div className={'home'} onClick={(e) => handlePageClick(e.target.className)}>Home</div>
+      <div className={'search'} onClick={(e) => handlePageClick(e.target.className)}>Search</div>
+      <div className={'topcharts'} onClick={(e) => handlePageClick(e.target.className)}>Top Charts</div>
+      <div className={'library'} onClick={(e) => handlePageClick(e.target.className)}>Library</div>
     </NavBarCSS>
   )
 };
