@@ -1,7 +1,8 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: './client/index.jsx',
   output: {
     filename: 'bundle.js',
@@ -22,9 +23,11 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.jsx', '.js'],
+    extensions: ['.js', '.jsx'],
   },
-  plugins: [
-    new UglifyJsPlugin(),
-  ],
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
+  watch: true,
 };
