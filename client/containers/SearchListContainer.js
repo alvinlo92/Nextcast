@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SearchList from '../components/SearchList';
-import changePage from '../actions/navBar';
+import changePage from '../actions/navbar';
 import { handlePodcast } from '../actions/podcast';
 
 const mapStateToProps = (state) => ({

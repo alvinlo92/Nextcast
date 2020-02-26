@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import searchList from './searchList';
 import podcast from './podcast';
 import topCharts from './topCharts';
-import page from './navBar';
+import page from './navbar';
 
 const rootReducer = combineReducers({
   page,

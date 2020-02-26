@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SearchListItem from './SearchListItem';
 
-const SearchListCSS = styled.div`
+const StyledSearchList = styled.div`
   position: fixed;
   top: 0;
   left: 230px;
@@ -13,7 +13,7 @@ const SearchListCSS = styled.div`
 `;
 
 const SearchList = ({ page, podcasts, handleSearchListItemClick }) => (
-  <SearchListCSS>
+  <StyledSearchList>
     {podcasts.length > 0 && page === 'search' && podcasts.map((podcast) => (
       <SearchListItem
         key={podcast.collectionId}
@@ -22,7 +22,7 @@ const SearchList = ({ page, podcasts, handleSearchListItemClick }) => (
         page={podcast.collectionName}
       />
     ))}
-  </SearchListCSS>
+  </StyledSearchList>
 );
 
 export default SearchList;

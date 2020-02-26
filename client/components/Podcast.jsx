@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PodcastList from './PodcastList';
 
-const PodcastCSS = styled.div`
+const StyledPodcast = styled.div`
   position: fixed;
   top: 0;
   left: 230px;
@@ -10,7 +10,7 @@ const PodcastCSS = styled.div`
   display: flex;
 `;
 
-const ArtworkContainerCSS = styled.div`
+const ArtworkContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,17 +18,17 @@ const ArtworkContainerCSS = styled.div`
   margin: 40px;
 `;
 
-const ArtworkCSS = styled.img`
+const Artwork = styled.img`
   width: 300px;
 `;
 
 const Podcast = ({ page, podcast, feed }) => (
-  Object.keys(feed).length > 0 && page === podcast.collectionName &&
-  (
-    <PodcastCSS>
-    <ArtworkContainerCSS>
-        <ArtworkCSS src={podcast.artworkUrl600} />
-      </ArtworkContainerCSS>
+  Object.keys(feed).length > 0 && page === podcast.collectionName
+  && (
+    <StyledPodcast>
+      <ArtworkContainer>
+        <Artwork src={podcast.artworkUrl600} />
+      </ArtworkContainer>
       <div>
         <div>{podcast.collectionName}</div>
         <div>{podcast.artistName}</div>
@@ -39,7 +39,7 @@ const Podcast = ({ page, podcast, feed }) => (
       <div>
         {feed.item.map((episode, i) => <PodcastList key={i} episode={episode} />)}
       </div>
-    </PodcastCSS>
+    </StyledPodcast>
   )
 );
 

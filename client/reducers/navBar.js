@@ -1,4 +1,4 @@
-const navBarReducer = (state = 'home', action) => {
+const navbarReducer = (state = 'home', action) => {
   switch (action.type) {
     case 'CHANGE_PAGE':
       return action.page;
@@ -7,4 +7,4 @@ const navBarReducer = (state = 'home', action) => {
   }
 };
 
-export default navBarReducer;
+export default navbarReducer;

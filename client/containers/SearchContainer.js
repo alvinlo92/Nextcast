@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Search from '../components/Search';
-import changePage from '../actions/navBar';
+import changePage from '../actions/navbar';
 import getSearchList from '../actions/search';
 
 const mapDispatchToProps = (dispatch) => ({
