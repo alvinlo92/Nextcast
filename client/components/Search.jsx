@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SearchCSS = styled.div`
+const StyledSearch = styled.div`
   position: fixed;
   top: 0;
   left: 230px;
@@ -9,15 +9,15 @@ const SearchCSS = styled.div`
 `;
 
 const Search = ({ handlePageClick, handleSearchInputChange }) => (
-  <SearchCSS>
+  <StyledSearch>
     <input
       type="text"
       placeholder="Search"
       onChange={(e) => handleSearchInputChange(e.target.value)}
-      className={'search'}
+      className="search"
       onClick={(e) => handlePageClick(e.target.className)}
     />
-  </SearchCSS>
+  </StyledSearch>
 );
 
 export default Search;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TopChartsItem from './TopChartsItem';
 
-const TopChartsCSS = styled.div`
+const StyledTopCharts = styled.div`
   position: fixed;
   top: 0;
   left: 230px;
@@ -21,14 +21,14 @@ class TopCharts extends React.Component {
   render() {
     const { page, topCharts } = this.props;
     return (
-      <TopChartsCSS>
+      <StyledTopCharts>
         {page === 'topcharts' && topCharts.map((podcast) => (
           <TopChartsItem
             key={podcast.id}
             podcast={podcast}
           />
         ))}
-      </TopChartsCSS>
+      </StyledTopCharts>
     );
   }
 }
