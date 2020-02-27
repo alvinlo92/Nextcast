@@ -4,7 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import Home from './Home';
 import Navbar from './Navbar';
-import SearchContainer from '../containers/SearchContainer';
+import Topbar from './Topbar';
 import SearchListContainer from '../containers/SearchListContainer';
 import TopChartsContainer from '../containers/TopChartsContainer';
 import PodcastContainer from '../containers/PodcastContainer';
@@ -21,11 +21,12 @@ const App = () => (
   <Router>
     <GlobalStyle />
     <Navbar />
+    <Topbar />
     <Switch>
       <Route exact path="/" component={Home} />
     </Switch>
     <Switch>
-      <Route path="/search" component={SearchContainer} />
+      <Route path="/search" component={SearchListContainer} />
     </Switch>
     <Switch>
       <Route path="/top-charts" component={TopChartsContainer} />

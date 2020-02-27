@@ -9,7 +9,7 @@ const StyledNavbar = styled.div`
   top: 0;
   left: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 2;
   padding-top: 24px;
 `;
 
