@@ -2,15 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledSearch = styled.div`
-  position: fixed;
-  top: 0;
-  left: 230px;
-  right: 0;
+  margin-left: 25px;
+`;
+
+const SearchBox = styled.input`
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  padding: 0 50px;
 `;
 
 const Search = ({ handlePageClick, handleSearchInputChange }) => (
   <StyledSearch>
-    <input
+    <SearchBox
       type="text"
       placeholder="Search"
       onChange={(e) => handleSearchInputChange(e.target.value)}
