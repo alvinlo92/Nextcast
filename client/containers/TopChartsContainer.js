@@ -3,7 +3,6 @@ import TopCharts from '../components/TopCharts';
 import { getTopCharts } from '../actions/topCharts';
 
 const mapStateToProps = (state) => ({
-  page: state.page,
   topCharts: state.topCharts,
 });
 

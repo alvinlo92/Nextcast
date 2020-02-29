@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import searchList from './searchList';
+import searchResults from './searchPage';
 import podcast from './podcast';
 import topCharts from './topCharts';
-import page from './navbar';
 
 const rootReducer = combineReducers({
-  page,
-  searchList,
+  searchResults,
   topCharts,
   podcast,
 });

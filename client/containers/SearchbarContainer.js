@@ -1,18 +1,14 @@
 import { connect } from 'react-redux';
-import Search from '../components/Search';
-import changePage from '../actions/navbar';
+import Searchbar from '../components/Searchbar';
 import getSearchList from '../actions/search';
 
 const mapDispatchToProps = (dispatch) => ({
-  handlePageClick: (page) => {
-    dispatch(changePage(page));
-  },
-  handleSearchInputChange: (search) => {
+  handleSearchbarChange: (search) => {
     const url = search.toLowerCase().split(' ').join('+');
     dispatch(getSearchList(url));
   },
 });
 
-const SearchContainer = connect(null, mapDispatchToProps)(Search);
+const SearchContainer = connect(null, mapDispatchToProps)(Searchbar);
 
 export default SearchContainer;

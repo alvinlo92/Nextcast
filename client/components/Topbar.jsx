@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import SearchContainer from '../containers/SearchContainer';
+import SearchContainer from '../containers/SearchbarContainer';
 
 const StyledTopbar = styled.div`
   position: fixed;

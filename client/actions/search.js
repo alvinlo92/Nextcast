@@ -1,12 +1,13 @@
+/* eslint-disable no-console */
 import axios from 'axios';
-import changeSearchList from './searchList';
+import changeSearchPage from './searchPage';
 
 const getSearchList = (url) => (dispatch) => {
   if (url === '') {
-    dispatch(changeSearchList([]));
+    dispatch(changeSearchPage([]));
   } else {
     axios.get(`/api/search/${url}`)
-      .then((res) => dispatch(changeSearchList(res.data)))
+      .then((res) => dispatch(changeSearchPage(res.data)))
       .catch(console.error);
   }
 };
