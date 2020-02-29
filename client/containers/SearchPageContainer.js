@@ -1,20 +1,17 @@
 import { connect } from 'react-redux';
-import SearchList from '../components/SearchList';
-import changePage from '../actions/navbar';
+import SearchPage from '../components/SearchPage';
 import { handlePodcast } from '../actions/podcast';
 
 const mapStateToProps = (state) => ({
-  page: state.page,
-  podcasts: state.searchList,
+  podcasts: state.searchResults,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleSearchListItemClick: (podcast) => {
-    dispatch(changePage(podcast.collectionName));
     dispatch(handlePodcast(podcast));
   },
 });
 
-const SearchListContainer = connect(mapStateToProps, mapDispatchToProps)(SearchList);
+const SearchListContainer = connect(mapStateToProps, mapDispatchToProps)(SearchPage);
 
 export default SearchListContainer;

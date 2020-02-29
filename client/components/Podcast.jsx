@@ -22,9 +22,8 @@ const Artwork = styled.img`
   width: 300px;
 `;
 
-const Podcast = ({ page, podcast, feed }) => (
-  Object.keys(feed).length > 0 && page === podcast.collectionName
-  && (
+const Podcast = ({ podcast, feed }) => (
+  Object.keys(feed).length > 0 && (
     <StyledPodcast>
       <ArtworkContainer>
         <Artwork src={podcast.artworkUrl600} />

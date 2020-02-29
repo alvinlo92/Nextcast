@@ -6,7 +6,7 @@ const changeTopCharts = (topCharts) => ({
 });
 
 const getTopCharts = () => (dispatch) => {
-  axios.get('/api/topcharts')
+  axios.get('/api/top-charts')
     .then((res) => dispatch(changeTopCharts(res.data)))
     .catch(console.error);
 };

@@ -19,10 +19,10 @@ class TopCharts extends React.Component {
   }
 
   render() {
-    const { page, topCharts } = this.props;
+    const { topCharts } = this.props;
     return (
       <StyledTopCharts>
-        {page === 'topcharts' && topCharts.map((podcast) => (
+        {topCharts.map((podcast) => (
           <TopChartsItem
             key={podcast.id}
             podcast={podcast}

@@ -1,9 +1,10 @@
-const express = require('express');
+/* eslint-disable no-console */
 const path = require('path');
+const express = require('express');
 const cors = require('cors');
 const compression = require('compression');
-
-const controllers = require('../database/controllers/index.js');
+const axios = require('axios');
+const { parseString } = require('xml2js');
 
 const app = express();
 const port = 3001;
@@ -12,14 +13,28 @@ app.use(cors());
 app.use(compression());
 app.use(express.static('public'));
 
+app.get('/api/search/:searchTerm', (req, res) => {
+  const { searchTerm } = req.params;
+  axios.get(`https://itunes.apple.com/search?term=${searchTerm}&media=podcast`)
+    .then((request) => res.send(request.data.results))
+    .catch(console.error);
+});
+
+app.get('/api/top-charts', (req, res) => {
+  axios.get('https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/100/explicit.json')
+    .then((request) => res.send(request.data.feed.results))
+    .catch(console.error);
+});
+
+app.get('/api/podcast/feed', (req, res) => {
+  const { url } = req.query;
+  axios.get(url)
+    .then((request) => parseString(request.data, (err, result) => res.send(result)))
+    .catch(console.error);
+});
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
-
-app.get('/api/search/:searchTerm', controllers.getSearchPodcast);
-
-app.get('/api/topcharts', controllers.getTopCharts);
-
-app.get('/api/podcast/feed', controllers.getPodcastFeed);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
