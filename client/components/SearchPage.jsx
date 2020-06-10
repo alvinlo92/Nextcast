@@ -1,5 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+
 import SearchListItem from './SearchListItem';
 
 const StyledSearchPage = styled.div`
@@ -12,17 +14,19 @@ const StyledSearchPage = styled.div`
   flex-wrap: wrap;
 `;
 
-const SearchPage = ({ podcasts, handleSearchListItemClick }) => (
-  <StyledSearchPage>
-    {podcasts.length > 0 && podcasts.map((podcast) => (
-      <SearchListItem
-        key={podcast.collectionId}
-        podcast={podcast}
-        handleSearchListItemClick={handleSearchListItemClick}
-        page={podcast.collectionName}
-      />
-    ))}
-  </StyledSearchPage>
-);
+const SearchPage = () => {
+  const podcasts = useSelector((state) => state.searchResults);
+  return (
+    <StyledSearchPage>
+      {podcasts.length > 0 && podcasts.map((podcast) => (
+        <SearchListItem
+          key={podcast.collectionId}
+          podcast={podcast}
+          page={podcast.collectionName}
+        />
+      ))}
+    </StyledSearchPage>
+  );
+};
 
 export default SearchPage;

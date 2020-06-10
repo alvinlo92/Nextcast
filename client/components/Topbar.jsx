@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import SearchContainer from '../containers/SearchbarContainer';
+import Searchbar from './Searchbar';
 
 const StyledTopbar = styled.div`
   position: fixed;
@@ -37,7 +37,7 @@ const Topbar = () => {
     <StyledTopbar>
       <Button type="Button" onClick={() => history.goBack()}>&lt;</Button>
       <RightButton type="Button" onClick={() => history.goForward()}>&gt;</RightButton>
-      <SearchContainer />
+      <Searchbar />
     </StyledTopbar>
   );
 };

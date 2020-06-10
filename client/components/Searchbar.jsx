@@ -1,7 +1,11 @@
+/* eslint-disable no-console */
 import React from 'react';
-import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import axios from 'axios';
+
+import changeSearchPage from '../actions/searchPage';
 
 const SearchLink = styled(Link)`
   margin-left: 25px;
@@ -16,7 +20,18 @@ const Searchbox = styled.input`
   padding: 0 50px;
 `;
 
-const Searchbar = ({ handleSearchbarChange }) => {
+const Searchbar = () => {
+  const dispatch = useDispatch();
+  const handleSearchbarChange = (search) => {
+    const url = search.toLowerCase().split(' ').join('+');
+    if (url === '') {
+      dispatch(changeSearchPage([]));
+    } else {
+      axios.get(`/api/search/${url}`)
+        .then((res) => dispatch(changeSearchPage(res.data)))
+        .catch(console.error);
+    }
+  };
   const history = useHistory();
   return (
     <SearchLink to="/search">
@@ -33,7 +48,3 @@ const Searchbar = ({ handleSearchbarChange }) => {
 };
 
 export default Searchbar;
-
-Searchbar.propTypes = {
-  handleSearchbarChange: PropTypes.func.isRequired,
-};

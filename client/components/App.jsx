@@ -5,9 +5,9 @@ import { createGlobalStyle } from 'styled-components';
 import Home from './Home';
 import Navbar from './Navbar';
 import Topbar from './Topbar';
-import SearchPageContainer from '../containers/SearchPageContainer';
-import TopChartsContainer from '../containers/TopChartsContainer';
-import PodcastContainer from '../containers/PodcastContainer';
+import SearchPage from './SearchPage';
+import TopCharts from './TopCharts';
+import Podcast from './Podcast';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -26,13 +26,13 @@ const App = () => (
       <Route exact path="/" component={Home} />
     </Switch>
     <Switch>
-      <Route path="/search" component={SearchPageContainer} />
+      <Route path="/search" component={SearchPage} />
     </Switch>
     <Switch>
-      <Route path="/top-charts" component={TopChartsContainer} />
+      <Route path="/top-charts" component={TopCharts} />
     </Switch>
     <Switch>
-      <Route path="/podcast" component={PodcastContainer} />
+      <Route path="/podcast" component={Podcast} />
     </Switch>
   </Router>
 );

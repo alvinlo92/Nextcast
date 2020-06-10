@@ -1,5 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+
 import PodcastList from './PodcastList';
 
 const StyledPodcast = styled.div`
@@ -22,24 +24,28 @@ const Artwork = styled.img`
   width: 300px;
 `;
 
-const Podcast = ({ podcast, feed }) => (
-  Object.keys(feed).length > 0 && (
-    <StyledPodcast>
-      <ArtworkContainer>
-        <Artwork src={podcast.artworkUrl600} />
-      </ArtworkContainer>
-      <div>
-        <div>{podcast.collectionName}</div>
-        <div>{podcast.artistName}</div>
-        <br />
-        Description
-        <div>{feed.description[0]}</div>
-      </div>
-      <div>
-        {feed.item.map((episode, i) => <PodcastList key={i} episode={episode} />)}
-      </div>
-    </StyledPodcast>
-  )
-);
+const Podcast = () => {
+  const podcast = useSelector((state) => state.podcast.podcast);
+  const feed = useSelector((state) => state.podcast.feed);
+  return (
+    Object.keys(feed).length > 0 && (
+      <StyledPodcast>
+        <ArtworkContainer>
+          <Artwork src={podcast.artworkUrl600} />
+        </ArtworkContainer>
+        <div>
+          <div>{podcast.collectionName}</div>
+          <div>{podcast.artistName}</div>
+          <br />
+          Description
+          <div>{feed.description[0]}</div>
+        </div>
+        <div>
+          {feed.item.map((episode, i) => <PodcastList key={i} episode={episode} />)}
+        </div>
+      </StyledPodcast>
+    )
+  );
+};
 
 export default Podcast;
