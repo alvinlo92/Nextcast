@@ -11,12 +11,14 @@ const StyledSearchListItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 150px;
+  width: 200px;
   margin: 10px;
 `;
 
 const Artwork = styled.img`
-  width: 100%;
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
 `;
 
 const SearchListItem = ({ podcast }) => {
@@ -33,8 +35,8 @@ const SearchListItem = ({ podcast }) => {
         src={podcast.artworkUrl600}
         onClick={() => handleSearchListItemClick()}
       />
-      {podcast.collectionName.length > 25 ? <div>{`${podcast.collectionName.slice(0, 22)}...`}</div> : <div>{podcast.collectionName}</div>}
-      {podcast.artistName.length > 25 ? <div>{`${podcast.artistName.slice(0, 22)}...`}</div> : <div>{podcast.artistName}</div>}
+      {podcast.collectionName.length > 22 ? <div>{`${podcast.collectionName.slice(0, 20)}...`}</div> : <div>{podcast.collectionName}</div>}
+      {podcast.artistName.length > 22 ? <div>{`${podcast.artistName.slice(0, 20)}...`}</div> : <div>{podcast.artistName}</div>}
     </StyledSearchListItem>
   );
 };
