@@ -8,13 +8,13 @@ import changeTopCharts from '../actions/topCharts';
 import TopChartsItem from './TopChartsItem';
 
 const StyledTopCharts = styled.div`
-  position: fixed;
-  top: 0;
-  left: 230px;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  position: absolute;
+  top: 65px;
+  left: 250px;
+  right: 25px;
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill,minmax(190px,1fr));
 `;
 
 const TopCharts = () => {

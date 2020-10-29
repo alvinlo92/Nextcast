@@ -24,14 +24,8 @@ const App = () => (
     <Topbar />
     <Switch>
       <Route exact path="/" component={Home} />
-    </Switch>
-    <Switch>
       <Route path="/search" component={SearchPage} />
-    </Switch>
-    <Switch>
       <Route path="/top-charts" component={TopCharts} />
-    </Switch>
-    <Switch>
       <Route path="/podcast" component={Podcast} />
     </Switch>
   </Router>
