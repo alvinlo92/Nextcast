@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import PodcastList from './PodcastList';
 
 const StyledPodcast = styled.div`
-  position: fixed;
-  top: 0;
-  left: 230px;
-  right: 0;
+  position: absolute;
+  top: 65px;
+  left: 250px;
+  right: 25px;
   display: flex;
 `;
 
@@ -38,7 +38,7 @@ const Podcast = () => {
           <div>{podcast.artistName}</div>
           <br />
           Description
-          <div>{feed.description[0]}</div>
+          <div>{feed.description}</div>
         </div>
         <div>
           {feed.item.map((episode, i) => <PodcastList key={i} episode={episode} />)}

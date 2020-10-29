@@ -4,7 +4,9 @@ const express = require('express');
 const cors = require('cors');
 const compression = require('compression');
 const axios = require('axios');
-const { parseString } = require('xml2js');
+const { Parser } = require('xml2js');
+
+const { parseString } = new Parser({ explicitArray: false });
 
 const app = express();
 const port = 3001;
@@ -26,7 +28,14 @@ app.get('/api/top-charts', (req, res) => {
     .catch(console.error);
 });
 
-app.get('/api/podcast/feed', (req, res) => {
+app.get('/api/podcast/:id', (req, res) => {
+  const { id } = req.params;
+  axios.get(`https://itunes.apple.com/lookup?id=${id}`)
+    .then((request) => res.send(request.data.results[0]))
+    .catch(console.error);
+});
+
+app.get('/api/podcast/:id/rss', (req, res) => {
   const { url } = req.query;
   axios.get(url)
     .then((request) => parseString(request.data, (err, result) => res.send(result)))
