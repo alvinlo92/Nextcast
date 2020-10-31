@@ -1,13 +1,14 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-import { changePodcastFeed } from '../actions/podcast';
+import { changePodcast, changePodcastFeed } from '../actions/podcast';
 
-const StyledSearchListItem = styled.div`
+const StyledSearchListItem = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,17 +25,19 @@ const Artwork = styled.img`
 const SearchListItem = ({ podcast }) => {
   const dispatch = useDispatch();
   const handleSearchListItemClick = () => {
+    dispatch(changePodcast(podcast));
+    const { id } = podcast;
     const params = { url: podcast.feedUrl };
-    axios.get('/api/podcast/feed', { params })
-      .then((res) => dispatch(changePodcastFeed(res.data.rss.channel[0])))
+    axios.get(`/api/podcast/${id}/rss`, { params })
+      .then((res) => dispatch(changePodcastFeed(res.data.rss.channel)))
       .catch(console.error);
   };
   return (
-    <StyledSearchListItem>
-      <Artwork
-        src={podcast.artworkUrl600}
-        onClick={() => handleSearchListItemClick()}
-      />
+    <StyledSearchListItem
+      to="/podcast"
+      onClick={() => handleSearchListItemClick()}
+    >
+      <Artwork src={podcast.artworkUrl600} />
       {podcast.collectionName.length > 22 ? <div>{`${podcast.collectionName.slice(0, 20)}...`}</div> : <div>{podcast.collectionName}</div>}
       {podcast.artistName.length > 22 ? <div>{`${podcast.artistName.slice(0, 20)}...`}</div> : <div>{podcast.artistName}</div>}
     </StyledSearchListItem>
