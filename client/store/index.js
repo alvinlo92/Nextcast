@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
 const initialState = {
-  searchResults: [],
+  search: [],
   topCharts: [],
   podcast: {
     podcast: {},

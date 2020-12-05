@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import searchResults from './searchPage';
+import search from './search';
 import podcast from './podcast';
 import topCharts from './topCharts';
 
 const rootReducer = combineReducers({
-  searchResults,
+  search,
   topCharts,
   podcast,
 });

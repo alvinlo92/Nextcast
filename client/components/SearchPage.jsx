@@ -9,22 +9,36 @@ const StyledSearchPage = styled.div`
   top: 65px;
   left: 250px;
   right: 25px;
+`;
+
+const Title = styled.div`
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+`;
+
+const Cards = styled.div`
   display: grid;
   grid-gap: 24px;
   grid-template-columns: repeat(auto-fill,minmax(190px,1fr));
 `;
 
 const SearchPage = () => {
-  const podcasts = useSelector((state) => state.searchResults);
+  const results = useSelector((state) => state.search);
   return (
     <StyledSearchPage>
-      {podcasts.length > 0 && podcasts.map((podcast) => (
-        <SearchListItem
-          key={podcast.collectionId}
-          podcast={podcast}
-          page={podcast.collectionName}
-        />
-      ))}
+      {results.length > 0 && <Title>Search Results</Title>}
+      <Cards>
+        {results.map((podcast) => (
+          <SearchListItem
+            key={podcast.collectionId}
+            podcast={podcast}
+            page={podcast.collectionName}
+          />
+        ))}
+      </Cards>
     </StyledSearchPage>
   );
 };

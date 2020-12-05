@@ -1,6 +1,6 @@
-const changeSearchPage = (podcasts) => ({
+const changeSearchPage = (results) => ({
   type: 'CHANGE_SEARCH_PAGE',
-  podcasts,
+  results,
 });
 
 export default changeSearchPage;

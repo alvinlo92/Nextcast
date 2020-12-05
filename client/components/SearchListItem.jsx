@@ -9,17 +9,29 @@ import PropTypes from 'prop-types';
 import { changePodcast, changePodcastFeed } from '../actions/podcast';
 
 const StyledSearchListItem = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 200px;
   margin: 10px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 `;
 
 const Artwork = styled.img`
   width: 200px;
   height: 200px;
   border-radius: 5px;
+`;
+
+const Name = styled.div`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+const ArtistName = styled.div`
+  color: grey;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const SearchListItem = ({ podcast }) => {
@@ -38,8 +50,8 @@ const SearchListItem = ({ podcast }) => {
       onClick={() => handleSearchListItemClick()}
     >
       <Artwork src={podcast.artworkUrl600} />
-      {podcast.collectionName.length > 22 ? <div>{`${podcast.collectionName.slice(0, 20)}...`}</div> : <div>{podcast.collectionName}</div>}
-      {podcast.artistName.length > 22 ? <div>{`${podcast.artistName.slice(0, 20)}...`}</div> : <div>{podcast.artistName}</div>}
+      <Name>{podcast.collectionName}</Name>
+      <ArtistName>{podcast.artistName}</ArtistName>
     </StyledSearchListItem>
   );
 };

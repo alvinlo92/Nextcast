@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Artwork = styled.div`
+const Artwork = styled.img`
   width: 120px;
 `;
 
@@ -18,12 +18,12 @@ const EpisodeDescription = styled.div`
 const PodcastList = ({ episode }) => (
   <div>
     <EpisodeTitle>{episode.title}</EpisodeTitle>
-    <EpisodeDescription>{episode['itunes:summary']}</EpisodeDescription>
-      <div>
-        <audio controls>
-          <source src={episode.enclosure.$.url} />
-        </audio>
-      </div>
+    <EpisodeDescription dangerouslySetInnerHTML={{ __html: episode.description }} />
+    <div>
+      <audio controls>
+        {/* <source src={episode.enclosure.$.url} /> */}
+      </audio>
+    </div>
     <hr />
   </div>
 );

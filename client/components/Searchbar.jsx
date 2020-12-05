@@ -1,17 +1,17 @@
-/* eslint-disable no-console */
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import changeSearchPage from '../actions/searchPage';
+import debounce from '../utils/common-utils';
+import changeSearchPage from '../actions/search';
 
 const SearchLink = styled(Link)`
   margin-left: 25px;
 `;
 
-const Searchbox = styled.input`
+const SearchInput = styled.input`
   border: none;
   border-radius: 8px;
   width: 100%;
@@ -29,17 +29,19 @@ const Searchbar = () => {
     } else {
       axios.get(`/api/search/${url}`)
         .then((res) => dispatch(changeSearchPage(res.data)))
+        // eslint-disable-next-line no-console
         .catch(console.error);
     }
   };
+  const handleSearchbarChangeDebounced = debounce(handleSearchbarChange, 200);
   const history = useHistory();
   return (
     <SearchLink to="/search">
-      <Searchbox
+      <SearchInput
         type="text"
         placeholder="Search"
         onChange={(e) => {
-          handleSearchbarChange(e.target.value);
+          handleSearchbarChangeDebounced(e.target.value);
           history.push(`/search/${e.target.value}`);
         }}
       />
