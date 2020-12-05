@@ -79,7 +79,7 @@ const Podcast = () => {
         </Header>
         <DescriptionContainer>
           <DescriptionTitle>Description</DescriptionTitle>
-          <div>{feed.description}</div>
+          <div dangerouslySetInnerHTML={{ __html: feed.description }} />
         </DescriptionContainer>
         <Line />
         <EpisodeContainer>

@@ -9,11 +9,10 @@ import PropTypes from 'prop-types';
 import { changePodcast, changePodcastFeed } from '../actions/podcast';
 
 const StyledTopChartsItems = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 200px;
   margin: 10px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 `;
 
 const Artwork = styled.img`
@@ -22,7 +21,20 @@ const Artwork = styled.img`
   border-radius: 5px;
 `;
 
-const TopChartsItem = ({ podcast }) => {
+const Name = styled.div`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+const ArtistName = styled.div`
+  color: grey;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+const TopChartsItem = ({ podcast, index }) => {
   const dispatch = useDispatch();
   const handleTopChartsItemClick = () => {
     const { id } = podcast;
@@ -41,11 +53,12 @@ const TopChartsItem = ({ podcast }) => {
       onClick={() => handleTopChartsItemClick()}
     >
       <Artwork src={podcast.artworkUrl100} alt="" />
-      {podcast.name.length > 22 ? <div>{`${podcast.name.slice(0, 20)}...`}</div> : <div>{podcast.name}</div>}
-      {podcast.artistName.length > 22 ? <div>{`${podcast.artistName.slice(0, 20)}...`}</div> : <div>{podcast.artistName}</div>}
+      <div>{index + 1}</div>
+      <Name>{podcast.name}</Name>
+      <ArtistName>{podcast.artistName}</ArtistName>
     </StyledTopChartsItems>
   );
-}
+};
 
 export default TopChartsItem;
 
@@ -56,11 +69,16 @@ TopChartsItem.propTypes = {
     artistUrl: PropTypes.string,
     artworkUrl100: PropTypes.string.isRequired,
     copyright: PropTypes.string,
-    genres: PropTypes.array.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.shape({
+      genreId: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })),
     id: PropTypes.string.isRequired,
     kind: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     releaseDate: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };

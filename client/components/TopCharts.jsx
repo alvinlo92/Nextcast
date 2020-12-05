@@ -12,6 +12,17 @@ const StyledTopCharts = styled.div`
   top: 65px;
   left: 250px;
   right: 25px;
+`;
+
+const Title = styled.div`
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+`;
+
+const Cards = styled.div`
   display: grid;
   grid-gap: 24px;
   grid-template-columns: repeat(auto-fill,minmax(190px,1fr));
@@ -27,12 +38,16 @@ const TopCharts = () => {
   }, []);
   return (
     <StyledTopCharts>
-      {topCharts.map((podcast) => (
-        <TopChartsItem
-          key={podcast.id}
-          podcast={podcast}
-        />
-      ))}
+      {topCharts.length > 0 && <Title>Top Podcasts</Title>}
+      <Cards>
+        {topCharts.map((podcast, i) => (
+          <TopChartsItem
+            key={podcast.id}
+            podcast={podcast}
+            index={i}
+          />
+        ))}
+      </Cards>
     </StyledTopCharts>
   );
 };

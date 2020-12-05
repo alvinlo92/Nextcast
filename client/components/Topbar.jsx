@@ -6,7 +6,7 @@ import Searchbar from './Searchbar';
 
 const StyledTopbar = styled.div`
   position: fixed;
-  background-color: transparent;
+  background-color: rgb(30, 30, 30);
   height: 60px;
   top: 0;
   left: 230px;
@@ -14,7 +14,7 @@ const StyledTopbar = styled.div`
   z-index: 1;
   display: flex;
   align-items: center;
-  margin: 0 25px;
+  padding: 0 25px;
 `;
 
 const Button = styled.button`
