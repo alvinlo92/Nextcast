@@ -9,7 +9,11 @@ const { Parser } = require('xml2js');
 const { parseString } = new Parser({ explicitArray: false });
 
 const app = express();
-const port = 3001;
+let port = process.env.PORT;
+
+if (port == null || port === '') {
+  port = 8000;
+}
 
 app.use(cors());
 app.use(compression());
