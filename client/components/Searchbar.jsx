@@ -13,7 +13,7 @@ const SearchLink = styled(Link)`
 
 const SearchInput = styled.input`
   border: none;
-  border-radius: 8px;
+  border-radius: 500px;
   width: 100%;
   height: 40px;
   font-size: 16px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledNavbar = styled.div`
@@ -13,8 +13,7 @@ const StyledNavbar = styled.div`
   padding-top: 24px;
 `;
 
-const SharedLinkStyle = styled(Link)`
-  color: rgb(255, 255, 255);
+const SharedLinkStyle = styled(NavLink)`
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -23,6 +22,7 @@ const SharedLinkStyle = styled(Link)`
 `;
 
 const LogoLink = styled(SharedLinkStyle)`
+  color: rgb(255, 255, 255);
   font-size: 27px;
   font-weight: 500;
   padding-left: 20px;
@@ -41,14 +41,31 @@ const List = styled.ul`
 `;
 
 const ItemLink = styled(SharedLinkStyle)`
+  color: #A9A9A9;
   font-size: 14px;
-  padding-left: 30px;
-  padding-top: 25px;
+  padding: 15px 0 15px 30px;
+
+  &:hover {
+    color: #FFFFFF;
+
+    path {
+      fill: #FFFFFF;
+    }
+  }
+
+  &.selected {
+    color: #FFFFFF;
+    background-color: rgb(69, 66, 67);
+
+    path {
+      fill: #FFFFFF;
+    }
+  }
 `;
 
 const ItemIcon = styled.svg`
   width: 20px;
-  fill: rgb(255, 255, 255);
+  fill: #A9A9A9;
   padding-right: 25px;
 `;
 
@@ -62,7 +79,7 @@ const Navbar = () => (
     </LogoLink>
     <List>
       <div>
-        <ItemLink to="/">
+        <ItemLink to="/" activeClassName="selected" exact>
           Home
           <ItemIcon viewBox="0 0 512 512">
             <path d="m504 231.566406-56-55.039062v-139.203125c0-8.828125-7.167969-16-16-16h-74.667969c-8.832031 0-16 7.171875-16 16v35.585937l-74.496093-68.671875c-6.207032-5.738281-15.804688-5.632812-21.90625.214844l-237.035157 227.21875c-5.015625 5.015625-7.894531 11.925781-7.894531 18.988281 0 14.699219 11.96875 26.664063 26.667969 26.664063h37.332031v192c0 23.574219 19.09375 42.667969 42.667969 42.667969h298.664062c23.574219 0 42.667969-19.09375 42.667969-42.667969v-192h37.332031c14.699219 0 26.667969-11.964844 26.667969-26.664063 0-7.0625-2.878906-13.972656-8-19.09375zm0 0" />
@@ -70,7 +87,7 @@ const Navbar = () => (
         </ItemLink>
       </div>
       <div>
-        <ItemLink to="/search">
+        <ItemLink to="/search" activeClassName="selected">
           Search
           <ItemIcon viewBox="0 0 512.00533 512">
             <path d="M508.885,493.784L353.109,338.008c32.341-35.925,52.224-83.285,52.224-135.339c0-111.744-90.923-202.667-202.667-202.667 S0,90.925,0,202.669s90.923,202.667,202.667,202.667c52.053,0,99.413-19.883,135.339-52.245l155.776,155.776 c2.091,2.091,4.821,3.136,7.552,3.136c2.731,0,5.461-1.045,7.552-3.115C513.045,504.707,513.045,497.965,508.885,493.784z M202.667,384.003c-99.989,0-181.333-81.344-181.333-181.333S102.677,21.336,202.667,21.336S384,102.68,384,202.669 S302.656,384.003,202.667,384.003z" />
@@ -78,7 +95,7 @@ const Navbar = () => (
         </ItemLink>
       </div>
       <div>
-        <ItemLink to="/top-charts">
+        <ItemLink to="/top-charts" activeClassName="selected">
           Top Charts
           <ItemIcon viewBox="0 0 512.00533 512">
             <path d="m155.003 90.001h342c8.284 0 15-6.716 15-15s-6.716-15-15-15h-342c-8.284 0-15 6.716-15 15s6.716 15 15 15z" />
@@ -91,7 +108,7 @@ const Navbar = () => (
         </ItemLink>
       </div>
       <div>
-        <ItemLink to="/library">
+        <ItemLink to="/library" activeClassName="selected">
           Library
           <ItemIcon viewBox="0 0 512.00533 512">
             <path d="m128 104.003906v-32c0-4.417968-3.582031-8-8-8h-112c-4.417969 0-8 3.582032-8 8v32zm0 0" />

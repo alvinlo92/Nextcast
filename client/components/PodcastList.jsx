@@ -21,7 +21,7 @@ const PodcastList = ({ episode }) => (
     <EpisodeDescription dangerouslySetInnerHTML={{ __html: episode.description }} />
     <div>
       <audio controls>
-        {/* <source src={episode.enclosure.$.url} /> */}
+        <source src={episode.enclosure.$.url} />
       </audio>
     </div>
     <hr />

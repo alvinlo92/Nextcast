@@ -18,13 +18,18 @@ const StyledTopbar = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: grey;
-  color: black;
+  background-color: rgb(45,45,45);
+  color: #A9A9A9;
   border: none;
-  border-radius: 8px;
-  width: 50px;
-  height: 30px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
   font-size: 20px;
+  cursor: pointer;
+
+  &:hover {
+    color: #FFFFFF;
+  }
 `;
 
 const RightButton = styled(Button)`
